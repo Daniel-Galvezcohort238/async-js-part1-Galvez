@@ -1,16 +1,14 @@
 class EventHandlers {
     constructor() {
-        const log = document.querySelector(".event-log");
+        const output = document.getElementById('output1')
 
         document.querySelector("#xhr").addEventListener('click', () => {
-            log.textContent = '';
+            output.textContent = '';
 
             const xhr = new XMLHttpRequest();
 
-            console.log(xhr.addEventListener('loadend', () => {console.log('y/n')}))
-
             xhr.addEventListener('loadend', () => {
-                log.textContent = `${log.textContent}Finished with status: ${xhr.status}`;
+                output.textContent = `${output.textContent}Finished with status: ${xhr.status}. Response: ${xhr.response}`;
             });
 
             console.log(xhr.open);
@@ -21,11 +19,11 @@ class EventHandlers {
                 'https://raw.githubusercontent.com/mdn/content/main/files/en-us/_wikihistory.json',
             );
             xhr.send();
-            log.textContent = `${log.textContent}Started XHR request\n`;
+            output.textContent = `${output.textContent}Started XHR request.\n`;
         });
 
         document.querySelector('#reload').addEventListener('click', () => {
-            log.textContent = '';
+            output.textContent = '';
             document.location.reload();
         })
     }
